@@ -11,13 +11,13 @@ var detectNetwork = function(cardNumber) {
   // Note: `cardNumber` will always be a string
   //test regex patterns for each card against cardNumber (stores true/false)
   //prefix is 38 or 39 and length is 14
-  var isDiner = /^3[8-9][0-9]{12}$/g.test(cardNumber);
+  var isDiner = /^3[89]\d{12}$/g.test(cardNumber);
   //prefix is 34 or 37 and length is 15
-  var isAmex = /^3[47][0-9]{13}$/g.test(cardNumber);
+  var isAmex = /^3[47]\d{13}$/g.test(cardNumber);
   //prefix is 4 and length is 13, 16 or 19
-  var isVisa = /^4[0-9]{9}(\d{3}){1,3}$/g.test(cardNumber);
+  var isVisa = /^4\d{9}(\d{3}){1,3}$/g.test(cardNumber);
   //prefix is 51, 52, 53, 54, or 55 and length is 16
-  var isMastercard = /^5[1-5][0-9]{14}$/g.test(cardNumber);
+  var isMastercard = /^5[1-5]\d{14}$/g.test(cardNumber);
   //prefix is 6011, 644649 or 65 and length is 16 or 19
   var isDiscover = /^6(?:011|4[4-9]\d|5\d{2})\d{12}(\d{3}){0,1}$/g.test(cardNumber);
   //prefix is 5018, 5020 or 5038 6304 and length of 12 to 19
@@ -29,7 +29,6 @@ var detectNetwork = function(cardNumber) {
 
   //prefixes 4903, 4905, 4911, 4936, 564182, 633110, 6333, or 6759 and have a length of 16, 18 or 19
   var isSwitch = /(?:49(03|05|11|36)\d{2}|564182|63(3110|33\d{2})|6759\d{2})\d{10}(\d{2,3})?/g.test(cardNumber);
-
 
   function checkChina(cardNumber) {
   	let start = Number(cardNumber.substring(0,2));
@@ -67,6 +66,8 @@ var detectNetwork = function(cardNumber) {
       return card;
     }
   }
+
+  return 'Card not supported';
   
   // Once you've read this, go ahead and try to implement this function, then return to the console.
 };
